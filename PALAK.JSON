@@ -1,0 +1,28 @@
+export default function json2html(data) {
+    // Start the table and add the custom data attribute
+    let html = '<table data-user="mahalgamaiyapalak1@gmail.com"><thead><tr>';
+
+    // Get column headers from the first item in the data array
+    if (data.length > 0) {
+        Object.keys(data[0]).forEach((header) => {
+            html += <th>${header}</th>;
+        });
+        html += '</tr></thead><tbody>';
+    } else {
+        return "<table>No data available</table>";
+    }
+
+    // Add each row of data to the table
+    data.forEach((item) => {
+        html += '<tr>';
+        Object.values(item).forEach((value) => {
+            html += <td>${value}</td>;
+        });
+        html += '</tr>';
+    });
+
+    // Close the table
+    html += '</tbody></table>';
+
+    return html;
+}
